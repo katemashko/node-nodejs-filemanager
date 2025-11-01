@@ -1,0 +1,16 @@
+{
+  "name": "node-nodejs-filemanager",
+  "version": "1.0.0",
+  "description": "Implement filemanager task",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katemashko/node-nodejs-filemanager.git"
+  },
+  "license": "ISC",
+  "author": "Katsiaryna Mashko",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ./main.js"
+  }
+}
