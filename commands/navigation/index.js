@@ -78,6 +78,30 @@ async function ls() {
   });
 }
 
+// ******** make directory ********
+
+async function mkdir(newDirectoryName) {
+  if (!newDirectoryName) {
+    throw new Error("Invalid input");
+  }
+
+  const fullPath = path.join(currentWorkingDirectory, newDirectoryName);
+
+  if (await pathExists(fullPath)) {
+    throw new Error("Invalid input. Directory already exists");
+  }
+
+  try {
+    await fs.mkdir(fullPath, { recursive: true });
+    console.log(`Directory ${newDirectoryName} was created`);
+
+    process.chdir(fullPath);
+    console.log(process.cwd());
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
+}
+
 // ******** path exists ********
 async function pathExists(itemPath) {
   try {
@@ -102,6 +126,7 @@ export {
   cd,
   fileExists,
   getCurrentWorkingDirectory,
+  mkdir,
   ls,
   pathExists,
   showCurrentWorkingDirectory,
