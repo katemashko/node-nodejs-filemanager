@@ -12,7 +12,7 @@ args.forEach((arg) => {
   }
 });
 
-const allowedCommands = [".exit"];
+const allowedCommands = ["cd", "up", ".exit"];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -47,8 +47,17 @@ const main = async () => {
       const trimmedInput = input.trim();
       const [command, argOne, argTwo] = trimmedInput.split(" ");
 
+      //   unknown operation
       if (!allowedCommands.includes(command)) {
-        throw new Error(`Unknown operation: ${command}`);
+        console.log("Invalid input");
+      }
+
+      if (command === "cd") {
+        await navigation.cd(argOne);
+      }
+
+      if (command === "up") {
+        await navigation.up();
       }
 
       if (command === ".exit") {
