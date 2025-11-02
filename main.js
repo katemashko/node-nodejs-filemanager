@@ -20,6 +20,7 @@ const allowedCommands = [
   "cp",
   "mkdir",
   "ls",
+  "mv",
   "rn",
   "up",
   ".exit",
@@ -93,6 +94,10 @@ const main = async () => {
 
       if (command === "cp") {
         await basicFs.cp(argOne, argTwo);
+      }
+
+      if (command === "mv") {
+        await basicFs.mv(argOne, argTwo);
       }
 
       if (command === ".exit") {

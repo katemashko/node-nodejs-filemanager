@@ -69,4 +69,80 @@ async function rn(filePath, newFileName) {
   console.log("File was renamed successfully");
 }
 
-export { add, cat, rn };
+// ******** copy file ********
+async function cp(sourceFilePath, newDirectoryPath) {
+  if (!sourceFilePath || !newDirectoryPath) {
+    throw new Error("Invalid input");
+  }
+
+  const sourceFullFilePath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    sourceFilePath
+  );
+
+  const newFullDirectoryPath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    newDirectoryPath
+  );
+
+  if (!(await navigation.fileExists(sourceFullFilePath))) {
+    throw new Error("File does not exist");
+  }
+  if (await navigation.fileExists(newFullDirectoryPath)) {
+    throw new Error("File already exists");
+  }
+
+  return new Promise((res, rej) => {
+    const readStream = fs.createReadStream(sourceFullFilePath);
+    const writeStream = fs.createWriteStream(newFullDirectoryPath);
+
+    readStream.on("error", rej);
+    writeStream.on("error", rej);
+    writeStream.on("finish", res);
+
+    readStream.pipe(writeStream);
+  });
+}
+
+// ******** move file ********
+async function mv(sourceFilePath, newDirectoryPath) {
+  if (!sourceFilePath || !newDirectoryPath) {
+    throw new Error("Invalid input");
+  }
+
+  const sourceFullFilePath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    sourceFilePath
+  );
+
+  const newFullDirectoryPath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    newDirectoryPath
+  );
+
+  if (!(await navigation.fileExists(sourceFullFilePath))) {
+    throw new Error("File does not exist");
+  }
+  if (await navigation.fileExists(newFullDirectoryPath)) {
+    throw new Error("File already exists");
+  }
+
+  return new Promise((res, rej) => {
+    const readStream = fs.createReadStream(sourceFullFilePath);
+    const writeStream = fs.createWriteStream(newFullDirectoryPath);
+
+    readStream.on("error", rej);
+    writeStream.on("error", rej);
+    writeStream.on("finish", () => {
+      console.log(
+        `File ${sourceFullFilePath} was moved to ${newFullDirectoryPath}`
+      );
+      fsPromise.unlink(sourceFilePath);
+      res();
+    });
+
+    readStream.pipe(writeStream);
+  });
+}
+
+export { add, cat, cp, mv, rn };
