@@ -3,6 +3,7 @@ import readline from "node:readline/promises";
 import * as navigation from "./commands/navigation/index.js";
 import * as basicFs from "./commands/fs/index.js";
 import * as osCommands from "./commands/os/index.js";
+import * as hashFile from "./commands/hash/index.js";
 
 // ******** general ********
 
@@ -19,6 +20,7 @@ const allowedCommands = [
   "cat",
   "cd",
   "cp",
+  "hash",
   "mkdir",
   "ls",
   "mv",
@@ -109,6 +111,10 @@ const main = async () => {
 
       if (command === "os") {
         osCommands.executeOsCommand(argOne);
+      }
+
+      if (command === "hash") {
+        await hashFile.hash(argOne);
       }
 
       if (command === ".exit") {
