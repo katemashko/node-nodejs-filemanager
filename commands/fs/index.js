@@ -46,4 +46,27 @@ async function add(newFileName) {
   await newFile.close();
 }
 
-export { add, cat };
+// ******** rename file ********
+async function rn(filePath, newFileName) {
+  if (!filePath || !newFileName) {
+    throw new Error("Invalid input");
+  }
+
+  const oldFilePath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    filePath
+  );
+
+  // C:\Users\katem\hello.txt
+  // privet.txt
+  const newFilePath = path.resolve(path.dirname(oldFilePath), newFileName);
+
+  if (!(await navigation.fileExists(oldFilePath))) {
+    throw new Error("File does not exist");
+  }
+
+  await fsPromise.rename(oldFilePath, newFilePath);
+  console.log("File was renamed successfully");
+}
+
+export { add, cat, rn };

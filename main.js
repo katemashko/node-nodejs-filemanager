@@ -13,7 +13,16 @@ args.forEach((arg) => {
   }
 });
 
-const allowedCommands = ["add", "cat", "cd", "mkdir", "ls", "up", ".exit"];
+const allowedCommands = [
+  "add",
+  "cat",
+  "cd",
+  "mkdir",
+  "ls",
+  "rn",
+  "up",
+  ".exit",
+];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -75,6 +84,10 @@ const main = async () => {
 
       if (command === "mkdir") {
         await navigation.mkdir(argOne);
+      }
+
+      if (command === "rn") {
+        await basicFs.rn(argOne, argTwo);
       }
 
       if (command === ".exit") {
