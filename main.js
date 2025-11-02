@@ -1,6 +1,7 @@
 import readline from "node:readline/promises";
 
 import * as navigation from "./commands/navigation/index.js";
+import * as basicFs from "./commands/fs/index.js";
 
 // ******** general ********
 
@@ -12,7 +13,7 @@ args.forEach((arg) => {
   }
 });
 
-const allowedCommands = ["cd", "ls", "up", ".exit"];
+const allowedCommands = ["cat", "cd", "ls", "up", ".exit"];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -62,6 +63,10 @@ const main = async () => {
 
       if (command === "ls") {
         await navigation.ls();
+      }
+
+      if (command === "cat") {
+        await basicFs.cat(argOne);
       }
 
       if (command === ".exit") {

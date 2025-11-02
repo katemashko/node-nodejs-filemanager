@@ -1,7 +1,6 @@
 import path from "node:path";
 import os from "node:os";
 import fs from "node:fs/promises";
-import { stat } from "node:fs";
 
 const homeDirectory = os.homedir();
 let currentWorkingDirectory = homeDirectory;
@@ -89,4 +88,11 @@ async function pathExists(itemPath) {
   }
 }
 
-export { cd, getCurrentWorkingDirectory, ls, showCurrentWorkingDirectory, up };
+export {
+  cd,
+  getCurrentWorkingDirectory,
+  ls,
+  pathExists,
+  showCurrentWorkingDirectory,
+  up,
+};
