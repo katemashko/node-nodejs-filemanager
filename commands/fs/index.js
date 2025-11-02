@@ -26,4 +26,24 @@ async function cat(filePath) {
   });
 }
 
-export { cat };
+// ******** create file ********
+async function add(newFileName) {
+  if (!newFileName) {
+    throw new Error("Invalid input");
+  }
+
+  const fullFilePath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    newFileName
+  );
+
+  if (await navigation.fileExists(fullFilePath)) {
+    throw new Error("File already exists");
+  }
+
+  const newFile = await fsPromise.open(fullFilePath, "w");
+  console.log(`File ${newFileName} was created successfully`);
+  await newFile.close();
+}
+
+export { add, cat };

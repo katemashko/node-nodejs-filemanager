@@ -88,8 +88,19 @@ async function pathExists(itemPath) {
   }
 }
 
+// ******** file exists ********
+async function fileExists(fileName) {
+  try {
+    await fs.access(fileName, fs.constants.F_OK);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export {
   cd,
+  fileExists,
   getCurrentWorkingDirectory,
   ls,
   pathExists,

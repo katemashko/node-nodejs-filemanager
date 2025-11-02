@@ -13,7 +13,7 @@ args.forEach((arg) => {
   }
 });
 
-const allowedCommands = ["cat", "cd", "ls", "up", ".exit"];
+const allowedCommands = ["add", "cat", "cd", "ls", "up", ".exit"];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -67,6 +67,10 @@ const main = async () => {
 
       if (command === "cat") {
         await basicFs.cat(argOne);
+      }
+
+      if (command === "add") {
+        await basicFs.add(argOne);
       }
 
       if (command === ".exit") {
