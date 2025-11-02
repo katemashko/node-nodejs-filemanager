@@ -61,7 +61,7 @@ const main = async () => {
 
   while (true) {
     try {
-      // ******** input processing ********
+      // ******** input process ********
 
       const input = await rl.question("Print command: \n");
       const trimmedInput = input.trim();
