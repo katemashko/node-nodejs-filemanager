@@ -145,4 +145,23 @@ async function mv(sourceFilePath, newDirectoryPath) {
   });
 }
 
-export { add, cat, cp, mv, rn };
+// ******** delete file ********
+async function rm(filePath) {
+  if (!filePath) {
+    throw new Error("Invalid input");
+  }
+
+  const fullFilePath = path.resolve(
+    navigation.getCurrentWorkingDirectory(),
+    filePath
+  );
+
+  if (!(await navigation.fileExists(fullFilePath))) {
+    throw new Error("File does not exist");
+  }
+
+  await fsPromise.unlink(fullFilePath);
+  console.log("File was deleted");
+}
+
+export { add, cat, cp, mv, rn, rm };

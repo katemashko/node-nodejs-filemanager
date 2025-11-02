@@ -22,6 +22,7 @@ const allowedCommands = [
   "ls",
   "mv",
   "rn",
+  "rm",
   "up",
   ".exit",
 ];
@@ -98,6 +99,10 @@ const main = async () => {
 
       if (command === "mv") {
         await basicFs.mv(argOne, argTwo);
+      }
+
+      if (command === "rm") {
+        await basicFs.rm(argOne);
       }
 
       if (command === ".exit") {
