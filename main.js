@@ -12,7 +12,7 @@ args.forEach((arg) => {
   }
 });
 
-const allowedCommands = ["cd", "up", ".exit"];
+const allowedCommands = ["cd", "ls", "up", ".exit"];
 
 const rl = readline.createInterface({
   input: process.stdin,
