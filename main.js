@@ -2,6 +2,7 @@ import readline from "node:readline/promises";
 
 import * as navigation from "./commands/navigation/index.js";
 import * as basicFs from "./commands/fs/index.js";
+import * as osCommands from "./commands/os/index.js";
 
 // ******** general ********
 
@@ -21,6 +22,7 @@ const allowedCommands = [
   "mkdir",
   "ls",
   "mv",
+  "os",
   "rn",
   "rm",
   "up",
@@ -103,6 +105,10 @@ const main = async () => {
 
       if (command === "rm") {
         await basicFs.rm(argOne);
+      }
+
+      if (command === "os") {
+        osCommands.executeOsCommand(argOne);
       }
 
       if (command === ".exit") {
