@@ -57,7 +57,11 @@ const main = async () => {
       }
 
       if (command === "up") {
-        await navigation.up();
+        navigation.up();
+      }
+
+      if (command === "ls") {
+        await navigation.ls();
       }
 
       if (command === ".exit") {
