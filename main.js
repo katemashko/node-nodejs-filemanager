@@ -4,6 +4,7 @@ import * as navigation from "./commands/navigation/index.js";
 import * as basicFs from "./commands/fs/index.js";
 import * as osCommands from "./commands/os/index.js";
 import * as hashFile from "./commands/hash/index.js";
+import * as archive from "./commands/archive/index.js";
 
 // ******** general ********
 
@@ -19,7 +20,9 @@ const allowedCommands = [
   "add",
   "cat",
   "cd",
+  "compress",
   "cp",
+  "decompress",
   "hash",
   "mkdir",
   "ls",
@@ -115,6 +118,14 @@ const main = async () => {
 
       if (command === "hash") {
         await hashFile.hash(argOne);
+      }
+
+      if (command === "compress") {
+        await archive.compress(argOne, argTwo);
+      }
+
+      if (command === "decompress") {
+        await archive.decompress(argOne, argTwo);
       }
 
       if (command === ".exit") {
