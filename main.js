@@ -17,6 +17,7 @@ const allowedCommands = [
   "add",
   "cat",
   "cd",
+  "cp",
   "mkdir",
   "ls",
   "rn",
@@ -88,6 +89,10 @@ const main = async () => {
 
       if (command === "rn") {
         await basicFs.rn(argOne, argTwo);
+      }
+
+      if (command === "cp") {
+        await basicFs.cp(argOne, argTwo);
       }
 
       if (command === ".exit") {
